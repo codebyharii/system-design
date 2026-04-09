@@ -1,0 +1,81 @@
+*SOLID Principles:*
+------------------------
+
+1. Single Responsibility Principle (SRP)
+    Definition : A class should have only one reason to change.
+    Problem    : A class handling multiple responsibilities (e.g., business logic AND persistence).
+    Solution   : Split into separate classes, each with a single, focused job.
+
+    Example:
+        Employee2           → only calculates salary  (business logic)
+        Employee2Repository → only saves to DB         (persistence)
+
+--------------------------------------------------------------------------------
+
+2. Open/Closed Principle (OCP)
+    Definition : Classes should be open for extension but closed for modification.
+    Problem    : Adding a new feature requires editing existing code (if-else chains).
+    Solution   : Use abstractions/interfaces so new behaviour is added via new classes.
+
+    Example:
+        InvoicePrinter interface  → abstraction
+        PDFInvoicePrinter         → extension (no old code touched)
+        ExcelInvoicePrinter       → extension (no old code touched)
+
+--------------------------------------------------------------------------------
+
+3. Liskov Substitution Principle (LSP)
+    Definition : Subtypes must be substitutable for their base types without breaking behaviour.
+    Problem    : Ostrich extends Bird but throws on fly() — substitution breaks the program.
+    Solution   : Separate "flying" into a FlyingBird interface; only flying birds implement it.
+
+    Example:
+        Bird2 (abstract base)  → eat() only
+        FlyingBird (interface) → fly()
+        Sparrow  → extends Bird2 + implements FlyingBird ✔
+        Ostrich  → extends Bird2 only (no fly needed)   ✔
+
+--------------------------------------------------------------------------------
+
+4. Interface Segregation Principle (ISP)
+    Definition : A class should not be forced to implement methods it doesn't use.
+    Problem    : A fat Vehicle interface forces Car to implement fly() and sail().
+    Solution   : Split into smaller, focused interfaces.
+
+    Example:
+        Drivable, Flyable, Sailable  → separate interfaces
+        Car2       → implements only Drivable
+        FlyingCar  → implements Drivable + Flyable
+
+--------------------------------------------------------------------------------
+
+5. Dependency Inversion Principle (DIP)
+    Definition : High-level modules should depend on abstractions, not low-level modules.
+    Problem    : Computer directly creates Keyboard and Monitor → tightly coupled.
+    Solution   : Depend on InputDevice / OutputDevice interfaces; inject via constructor.
+
+    Example:
+        Computer2(InputDevice, OutputDevice) → depends on abstractions ✔
+        Keyboard2 implements InputDevice
+        Monitor2  implements OutputDevice
+
+--------------------------------------------------------------------------------
+
+*Quick Reference Table:*
+
+ Principle | Keyword        | One-liner
+-----------|----------------|--------------------------------------------------
+ SRP       | Responsibility | One class, one job
+ OCP       | Extension      | Open to add, closed to modify
+ LSP       | Substitution   | Subtypes must honour their parent's contract
+ ISP       | Interface      | Don't force unused methods on a class
+ DIP       | Abstraction    | Depend on interfaces, not concrete classes
+
+--------------------------------------------------------------------------------
+
+*Key Takeaways:*
+    - SOLID makes code maintainable, testable, and scalable.
+    - Violations lead to brittle, tightly-coupled code that is hard to change.
+    - Use interfaces and abstractions as the backbone of good OOP design.
+    - SRP & ISP → keep things small and focused.
+    - OCP, LSP, DIP → build flexible, replaceable structures.

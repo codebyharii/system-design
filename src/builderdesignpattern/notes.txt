@@ -1,0 +1,37 @@
+🧩 Builder Design Pattern
+📌 Definition
+Builder Design Pattern is used to create complex objects step-by-step,
+especially when there are many fields (some mandatory, some optional)
+It makes object creation simple, readable, and flexible
+Instead of passing 10–15 parameters into a messy constructor,
+you set what you need one by one and then build the final object
+
+
+🍕 Analogy
+
+
+👉 Think of it like making a pizza:
+
+you add only the toppings you want
+then finalize it
+❗ Problem (Without Builder)
+Pizza pizza = new Pizza("Large", true, false, true);
+Problems:
+Very confusing
+Hard to remember
+Constructor becomes very long
+Need multiple constructors
+🧱 Example Class
+public class Pizza {
+    private String size;
+    private boolean cheese;
+    private boolean pepperoni;
+    private boolean bacon;
+
+    public Pizza(String size, boolean cheese, boolean pepperoni, boolean bacon) {
+        this.size = size;
+        this.cheese = cheese;
+        this.pepperoni = pepperoni;
+        this.bacon = bacon;
+    }
+}
